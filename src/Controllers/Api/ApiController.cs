@@ -27,6 +27,20 @@ public class ApiController : ControllerBase
         return Ok(tickets);
     }
     
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetTicketById(int id)
+    {
+        var ticket = await _context.Tickets
+            .FirstOrDefaultAsync(t => t.Id == id);
+        
+        if (ticket == null)
+        {
+            return NotFound(new { message = "Ticket non trouvé" });
+        }
+
+        return Ok(ticket);
+    }
+    
     [HttpPost]
     public async Task<IActionResult> CreateTicket([FromForm] Ticket ticket)
     {
@@ -38,4 +52,32 @@ public class ApiController : ControllerBase
 
         return Ok(new { message = "Ticket créé avec succès", id = ticket.Id });
     }
+    
+    [HttpPost("update/{id}")]
+    public async Task<IActionResult> UpdateTicket(int id, [FromForm] Ticket ticket)
+    {
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        var existingTicket = await _context.Tickets.FindAsync(id);
+        if (existingTicket == null)
+        {
+            return NotFound(new { message = "Ticket non trouvé" });
+        }
+
+        existingTicket.Username = ticket.Username;
+        existingTicket.Title = ticket.Title;
+        existingTicket.Description = ticket.Description;
+        existingTicket.Email = ticket.Email;
+
+        await _context.SaveChangesAsync();
+        
+        return Ok(new { message = "Ticket modifié avec succès", id = existingTicket.Id });
+    }
+
+
+    
+    
 }

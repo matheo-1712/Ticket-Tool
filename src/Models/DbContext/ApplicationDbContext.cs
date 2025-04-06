@@ -10,6 +10,6 @@ namespace TicketTool.Data
         {
         }
 
-        public DbSet<Ticket> Tickets { get; set; }  // Exemple d'entité (table) "Tickets"
+        public DbSet<Ticket> Tickets { get; set; } 
     }
 }

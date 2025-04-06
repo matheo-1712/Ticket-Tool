@@ -1,0 +1,65 @@
+@model TicketTool.Models.Ticket
+
+@{
+ViewData["Title"] = "Modification d'un ticket";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container mt-5">
+    <form id="ticketForm" action="/api/ticket/update/@Model.Id" method="post">
+        <div class="mb-3">
+            <label for="username" class="form-label">Nom de l'utilisateur</label>
+            <input type="text" class="form-control" id="username" name="Username" value="@Model.Username" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre du ticket</label>
+            <input type="text" class="form-control" id="title" name="Title" value="@Model.Title" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="Description" rows="4"
+                      required>@Model.Description</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Modifier le ticket</button>
+    </form>
+
+    <div id="successMessage" style="display:none; margin-top:20px;">
+        <div class="alert alert-success">
+            Ticket modifié avec succès !
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('ticketForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+        let response = await fetch(this.action, {
+            method: this.method,
+            body: formData
+        });
+
+        let result = await response.json();
+
+        if (response.ok) {
+            let successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+
+            setTimeout(function () {
+                window.location.href = '/ticket';
+            }, 1000);
+        } else {
+            alert("Erreur: " + result.message);
+        }
+    });
+</script>
