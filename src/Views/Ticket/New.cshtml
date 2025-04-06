@@ -8,6 +8,8 @@
 
     <form action="/api/ticket/" method="post">
 
+        <input type="hidden" name="Id" value="@Model.Id">
+
         <!-- Nom de l'utilisateur -->
         <div class="mb-3">
             <label for="username" class="form-label">Votre nom</label>

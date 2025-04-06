@@ -26,5 +26,16 @@ namespace TicketTool.Controllers
         {
             return View();
         }
+        
+        public async Task<IActionResult> Update(int id)
+        {
+            var response = await _httpClient.GetStringAsync($"https://support.perodeau-matheo.xyz/api/ticket/{id}");
+            var ticket = JsonConvert.DeserializeObject<Ticket>(response);
+
+            return View(ticket);
+        }
+        
+        
+        
     }
 }
