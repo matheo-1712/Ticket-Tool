@@ -6,7 +6,7 @@
 
 <div class="container mt-5">
 
-    <form action="/api/ticket/" method="post">
+    <form id="ticketForm" action="/api/ticket/" method="post">
 
         <input type="hidden" name="Id" value="@Model.Id">
 
@@ -37,6 +37,8 @@
                 <option value="Haute">Haute</option>
             </select>
         </div>
+
+        <input type="hidden" name="Statut" value="Non traité">
 
         <!-- Email -->
         <div class="mb-3">

@@ -24,7 +24,8 @@ namespace TicketTool.Controllers
 
         public IActionResult New()
         {
-            return View();
+            var ticket = new Ticket { Statut = "Non traité" };
+            return View(ticket);
         }
         
         public async Task<IActionResult> Update(int id)
