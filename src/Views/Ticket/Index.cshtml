@@ -1,3 +1,5 @@
+@model IEnumerable<TicketTool.Models.Ticket>
+
 @{
     ViewData["Title"] = "Liste des tickets";
 }
@@ -17,14 +19,17 @@
         </tr>
         </thead>
         <tbody>
+        @foreach (var ticket in Model) 
+        {
         <tr>
-            <th scope="row">1</th>
-            <td>Matheo Perodeau</td>
-            <td>Problème de connexion</td>
-            <td>Urgent</td>
-            <td><span class="badge bg-warning text-dark">En attente</span></td>
-            <td>2025-04-01</td>
+            <th scope="row">@ticket.Id</th>  <!-- Affichage de l'ID -->
+            <td>@ticket.Username</td>  <!-- Nom de l'utilisateur -->
+            <td>@ticket.Title</td>  <!-- Titre du problème -->
+            <td>@ticket.Priority</td>  <!-- Priorité -->
+            <td><span class="badge bg-warning text-dark">En attente</span></td>  <!-- Statut fixe ici pour l'exemple -->
+            <td>@ticket.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>  <!-- Date de création formatée -->
         </tr>
+        }
         </tbody>
     </table>
 

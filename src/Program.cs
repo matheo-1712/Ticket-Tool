@@ -8,6 +8,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpClient(); 
+
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

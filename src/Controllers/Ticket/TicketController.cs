@@ -1,27 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
 using TicketTool.Models; 
-using TicketTool.Data; 
-using Microsoft.EntityFrameworkCore;
+using System.Net.Http;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace TicketTool.Controllers
-
 {
     public class TicketController : Controller
     {
-        private readonly ApplicationDbContext _context;
-        
-        public TicketController(ApplicationDbContext context)
+        private readonly HttpClient _httpClient;
+
+        public TicketController(HttpClient httpClient)
         {
-            _context = context;
+            _httpClient = httpClient;
         }
+
         public async Task<IActionResult> Index()
         {
-            var tickets = await _context.Tickets.ToListAsync();
+            var response = await _httpClient.GetStringAsync("https://support.perodeau-matheo.xyz/api/ticket");
+            var tickets = JsonConvert.DeserializeObject<List<Ticket>>(response);
             return View(tickets);
-        }
-        public IActionResult New()
-        {
-            return View();
         }
     }
 }
