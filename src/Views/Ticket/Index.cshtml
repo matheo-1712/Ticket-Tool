@@ -25,10 +25,13 @@
             <td>@ticket.Username</td>  <!-- Nom de l'utilisateur -->
             <td>@ticket.Title</td>  <!-- Titre du problème -->
             <td>@ticket.Priority</td>  <!-- Priorité -->
-            <td><span class="badge bg-warning text-dark">En attente</span></td>  <!-- Statut fixe ici pour l'exemple -->
+            <td>@ticket.Statut</td>  <!-- Statut fixe ici pour l'exemple -->
             <td>@ticket.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>  <!-- Date de création formatée -->
             <td>
                 <a href="@Url.Action("Update", "Ticket", new { id = ticket.Id })" class="btn btn-warning">Modifier</a>
+            </td>
+            <td>
+
             </td>
 
         </tr>

@@ -24,6 +24,12 @@ ViewData["Title"] = "Modification d'un ticket";
                       required>@Model.Description</textarea>
         </div>
 
+        <select class="form-select" id="statut" name="Statut" required>
+            <option value="Non traité" selected>Non traité</option>
+            <option value="En cours">En cours</option>
+            <option value="Résolu">Résolu</option>
+        </select>
+
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="Email" value="@Model.Email" required>

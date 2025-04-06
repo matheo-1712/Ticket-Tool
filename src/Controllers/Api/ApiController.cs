@@ -71,11 +71,14 @@ public class ApiController : ControllerBase
         existingTicket.Title = ticket.Title;
         existingTicket.Description = ticket.Description;
         existingTicket.Email = ticket.Email;
+        existingTicket.Statut = ticket.Statut;
 
         await _context.SaveChangesAsync();
         
         return Ok(new { message = "Ticket modifié avec succès", id = existingTicket.Id });
     }
+    
+    
 
 
     
