@@ -25,13 +25,29 @@
             <td>@ticket.Username</td>  <!-- Nom de l'utilisateur -->
             <td>@ticket.Title</td>  <!-- Titre du problème -->
             <td>@ticket.Priority</td>  <!-- Priorité -->
-            <td>@ticket.Statut</td>  <!-- Statut fixe ici pour l'exemple -->
+            <td>
+                @if (ticket.Statut == "Non traité")
+                {
+                <span class="badge bg-danger">Non traité</span>
+                }
+                else if (ticket.Statut == "En cours")
+                {
+                <span class="badge bg-warning">En cours</span>
+                }
+                else if (ticket.Statut == "Résolu")
+                {
+                <span class="badge bg-success">Résolu</span>
+                }
+                else
+                {
+                <span class="badge bg-light text-dark">@ticket.Statut</span>
+                }
+            </td>
+
+
             <td>@ticket.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>  <!-- Date de création formatée -->
             <td>
                 <a href="@Url.Action("Update", "Ticket", new { id = ticket.Id })" class="btn btn-warning">Modifier</a>
-            </td>
-            <td>
-
             </td>
 
         </tr>
