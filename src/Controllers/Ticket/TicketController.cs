@@ -21,5 +21,10 @@ namespace TicketTool.Controllers
             var tickets = JsonConvert.DeserializeObject<List<Ticket>>(response);
             return View(tickets);
         }
+
+        public IActionResult New()
+        {
+            return View();
+        }
     }
 }

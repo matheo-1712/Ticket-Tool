@@ -10,7 +10,6 @@
     <table class="table table-bordered table-striped table-hover">
         <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Nom de l'utilisateur</th>
             <th scope="col">Problème</th>
             <th scope="col">Priorité</th>
@@ -22,7 +21,6 @@
         @foreach (var ticket in Model) 
         {
         <tr>
-            <th scope="row">@ticket.Id</th>  <!-- Affichage de l'ID -->
             <td>@ticket.Username</td>  <!-- Nom de l'utilisateur -->
             <td>@ticket.Title</td>  <!-- Titre du problème -->
             <td>@ticket.Priority</td>  <!-- Priorité -->
