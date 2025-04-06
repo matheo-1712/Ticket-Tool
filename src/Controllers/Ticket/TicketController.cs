@@ -19,22 +19,9 @@ namespace TicketTool.Controllers
             var tickets = await _context.Tickets.ToListAsync();
             return View(tickets);
         }
-        public IActionResult Create()
+        public IActionResult New()
         {
             return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Ticket ticket)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(ticket);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(ticket);
         }
     }
 }
