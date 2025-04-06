@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Création d'un ticket";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container mt-5">
+
+    <form action="/api/ticket/" method="post">
+
+        <!-- Nom de l'utilisateur -->
+        <div class="mb-3">
+            <label for="username" class="form-label">Votre nom</label>
+            <input type="text" class="form-control" id="username" name="Username" required>
+        </div>
+
+        <!-- Titre du ticket -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Titre du ticket</label>
+            <input type="text" class="form-control" id="title" name="Title" required>
+        </div>
+
+        <!-- Description du ticket -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="Description" rows="4" required></textarea>
+        </div>
+
+        <!-- Priorité -->
+        <div class="mb-3">
+            <label for="priority" class="form-label">Priorité</label>
+            <select class="form-select" id="priority" name="Priority" required>
+                <option value="Basse">Basse</option>
+                <option value="Moyenne">Moyenne</option>
+                <option value="Haute">Haute</option>
+            </select>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Votre Email</label>
+            <input type="email" class="form-control" id="email" name="Email" required>
+        </div>
+
+        <!-- Bouton -->
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary">Créer le ticket</button>
+        </div>
+
+    </form>
+
+</div>

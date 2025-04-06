@@ -1,0 +1,37 @@
+@model IEnumerable<TicketTool.Models.Ticket>
+
+@{
+    ViewData["Title"] = "Liste des tickets";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container mt-5">
+    <table class="table table-bordered table-striped table-hover">
+        <thead>
+        <tr>
+            <th scope="col">Nom de l'utilisateur</th>
+            <th scope="col">Problème</th>
+            <th scope="col">Priorité</th>
+            <th scope="col">Statut</th>
+            <th scope="col">Date de création</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var ticket in Model) 
+        {
+        <tr>
+            <td>@ticket.Username</td>  <!-- Nom de l'utilisateur -->
+            <td>@ticket.Title</td>  <!-- Titre du problème -->
+            <td>@ticket.Priority</td>  <!-- Priorité -->
+            <td><span class="badge bg-warning text-dark">En attente</span></td>  <!-- Statut fixe ici pour l'exemple -->
+            <td>@ticket.CreatedAt.ToString("dd/MM/yyyy HH:mm")</td>  <!-- Date de création formatée -->
+        </tr>
+        }
+        </tbody>
+    </table>
+
+    <button type="button" class="btn btn-secondary">
+        <a style="text-decoration: none; color: inherit;" href="/ticket/new">Créer un ticket</a>
+    </button>
+</div>
