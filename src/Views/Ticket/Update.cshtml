@@ -7,7 +7,7 @@ ViewData["Title"] = "Modification d'un ticket";
 <h1>@ViewData["Title"]</h1>
 
 <div class="container mt-5">
-    <form action="/api/ticket/update/@Model.Id" method="post">
+    <form id="ticketForm" action="/api/ticket/update/@Model.Id" method="post">
         <div class="mb-3">
             <label for="username" class="form-label">Nom de l'utilisateur</label>
             <input type="text" class="form-control" id="username" name="Username" value="@Model.Username" required>
@@ -31,4 +31,35 @@ ViewData["Title"] = "Modification d'un ticket";
 
         <button type="submit" class="btn btn-primary">Modifier le ticket</button>
     </form>
+
+    <div id="successMessage" style="display:none; margin-top:20px;">
+        <div class="alert alert-success">
+            Ticket modifié avec succès !
+        </div>
+    </div>
 </div>
+
+<script>
+    document.getElementById('ticketForm').addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        let formData = new FormData(this);
+        let response = await fetch(this.action, {
+            method: this.method,
+            body: formData
+        });
+
+        let result = await response.json();
+
+        if (response.ok) {
+            let successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+
+            setTimeout(function () {
+                window.location.href = '/ticket';
+            }, 1000);
+        } else {
+            alert("Erreur: " + result.message);
+        }
+    });
+</script>
